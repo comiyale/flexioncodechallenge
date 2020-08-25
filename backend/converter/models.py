@@ -6,9 +6,6 @@ class UnitType(models.Model):
     def __str__(self):
         return self.name
 
-    def get_units(self):
-        return self.units
-
 
 class Unit(models.Model):
     name = models.CharField(max_length=100, unique=True)
