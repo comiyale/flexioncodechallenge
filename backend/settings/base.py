@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'backend.converter',
     # Third Party Apps
     'rest_framework',
-
 ]
 
 MIDDLEWARE = [

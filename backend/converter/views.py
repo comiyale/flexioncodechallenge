@@ -36,9 +36,6 @@ class DetailUnitType(generics.RetrieveUpdateDestroyAPIView):
 class ConverterView(APIView):
     name = 'convert'
 
-    def get(self, request):
-        pass
-
     def post(self, request):
         serializer = ConverterSerializer(data=request.data)
 
@@ -49,12 +46,16 @@ class ConverterView(APIView):
             isTemp = valid_data.get("isTemp")
             initial_unit = valid_data.get("initial_unit")
             desired_unit = valid_data.get("desired_unit")
+            student_response = valid_data.get("student_response")
 
-            converter = Converter(value, initial_unit, desired_unit, isTemp)
-            new_value = converter.convert()
+            converter = Converter(value=value, initial_unit=initial_unit, desired_unit=desired_unit, isTemp=isTemp, student_response=student_response)
             
+            try:
+                response = converter.convert()
+            except:
+                response = "Invalid"
             
-            return Response(new_value)
+            return Response(response)
 
         else:
             return Response({"errors": serializer.errors})
