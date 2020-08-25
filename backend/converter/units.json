@@ -1,0 +1,6 @@
+{
+    "kelvin": ureg.kelvin,
+    "rankine": ureg.rankine,
+    "celsius": ureg.celsius,
+    "fahrenheit": ureg.fahrenheit
+}
