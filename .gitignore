@@ -7,6 +7,7 @@
 *.log
 *.pot
 *.pyc
+.pytest_cache
 **/__pycache__/
 **/migrations/
 
