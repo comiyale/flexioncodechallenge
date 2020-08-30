@@ -1,13 +1,23 @@
+from rest_framework import status
 from rest_framework.views import APIView
+from rest_framework.decorators import api_view
 from rest_framework.response import Response
+
+from django.http import JsonResponse
 
 from .serializers import ConverterSerializer
 
-from .converter import Converter
+from .convert import Converter, get_units
+
+
+@api_view(['GET'])
+def list_units(request):
+        response = get_units()
+        return JsonResponse(response, safe=False)
 
 class ConverterView(APIView):
     name = 'convert'
-
+    
     def post(self, request):
         serializer = ConverterSerializer(data=request.data)
 
@@ -21,12 +31,9 @@ class ConverterView(APIView):
 
             converter = Converter(value=value, initial_unit=initial_unit, desired_unit=desired_unit, student_response=student_response)
             
-            try:
-                response = converter.convert()
-            except:
-                response = "Invalid"
+            response = converter.convert()
             
-            return Response(response)
+            return Response(response, status=status.HTTP_200_OK)
 
         else:
-            return Response({"errors": serializer.errors})
+            return Response({"errors": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
