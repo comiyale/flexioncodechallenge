@@ -67,10 +67,6 @@ class Converter:
         approx_student_response = self.approx_to_tenth(self.student_response)
         approx_desired_value = self.approx_to_tenth(desired_value)
         is_equal = (approx_student_response == approx_desired_value)
-
-        # if not is_equal:
-        #     print(f"{self.initial_unit} to {self.desired_unit}")
-        #     print(f"response {approx_student_response}  -  desired {approx_desired_value} \n")
         return is_equal
     
     def is_input_negative(self, value):
@@ -80,11 +76,15 @@ class Converter:
             return False
 
     def is_unit_temp_convertible(self):
-        is_convertible = self.initial_unit and self.desired_unit in self.temp_units.keys()
+        initial = self.initial_unit in self.temp_units.keys()
+        desired = self.desired_unit in self.temp_units.keys()
+        is_convertible = initial and desired
         return is_convertible
 
     def is_unit_volume_convertible(self):
-        is_convertible = self.initial_unit and self.desired_unit in self.vol_units.keys()
+        initial = self.initial_unit in self.vol_units.keys()
+        desired = self.desired_unit in self.vol_units.keys()
+        is_convertible = initial and desired
         return is_convertible
 
     def response(self, is_correct):
@@ -102,9 +102,6 @@ class Converter:
         elif self.is_unit_volume_convertible() and not self.is_input_negative(self.value):
             desired_value = self.convert_volume()
             is_correct = self.compare_answer(desired_value)
-            if not is_correct:
-                print(f"{self.initial_unit} ==> {self.desired_unit}")
-                print(f"{self.student_response} ===> {desired_value}")
             return self.response(is_correct)
             
         else:

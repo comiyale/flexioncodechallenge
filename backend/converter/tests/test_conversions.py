@@ -23,7 +23,7 @@ class TemperatureConversionTestCases(unittest.TestCase):
         self.assertEqual(str(Converter(value=100, initial_unit='Fahrenheit', desired_unit='Celsius', student_response=37.8)), 'correct')
 
 
-class cupsConversionTestCases(unittest.TestCase):
+class CupsConversionTestCases(unittest.TestCase):
     def test_cups_to_cups(self):
         self.assertEqual(str(Converter(value=100, initial_unit='cups', desired_unit='cups', student_response=100)), 'correct')
 
