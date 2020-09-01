@@ -5,7 +5,7 @@ from convert import Converter
 
 class TemperatureTestCase(unittest.TestCase):
         def setUp(self):
-                self.conversion = Converter(value=100, initial_unit='celsius', desired_unit='kelvin', student_response=373.15)
+                self.conversion = Converter(value=100, initial_unit='Celsius', desired_unit='Kelvin', student_response=373.15)
 
         def test_check_class_initialised(self):
                 self.assertTrue(isinstance(self.conversion, Converter))

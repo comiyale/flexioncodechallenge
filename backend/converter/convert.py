@@ -7,10 +7,10 @@ ureg = pint.UnitRegistry()
 
 units = [
     {
-        "temperature": ["kelvin", "rankine", "celsius", "fahrenheit"]
+        "temperature": ["Kelvin", "Rankine", "Celsius", "Fahrenheit"]
     },
     {
-        "volume": ['cup', 'liters','gallons','teaspoons','cubic_inch', 'tablespoon']
+        "volume": ["liters", "tablespoons", "cubic-inches", "cups", "cubic-feet", "gallons"]
     }
 ]
 
@@ -20,19 +20,19 @@ def get_units():
 
 class Converter:
     temp_units = {
-            "kelvin": ureg.kelvin,
-            "rankine": ureg.rankine,
-            "celsius": ureg.celsius,
-            "fahrenheit": ureg.fahrenheit
+            "Kelvin": ["kelvin", ureg.kelvin],
+            "Rankine": ["rankine", ureg.rankine],
+            "Celsius": ["celsius", ureg.celsius],
+            "Fahrenheit": ["fahrenheit", ureg.fahrenheit]
         }
 
     vol_units = {
-                'cup': ureg.cup,
-                'liters': ureg.liters,
-                'gallons': ureg.gallons,
-                'teaspoons': ureg.teaspoon,
-                'cubic_inch': ureg.cubic_inch,
-                'tablespoon': ureg.tablespoon
+                'cups': ["cup", ureg.cup],
+                'liters': ["liters", ureg.liters],
+                'gallons': ["gallons", ureg.gallons],
+                'cubic_feet': ["cubic_feet", ureg.cubic_feet],
+                'cubic_inches': ["cubic_inch", ureg.cubic_inch],
+                'tablespoons': ["tablespoon", ureg.tablespoon]
             }
     
     def __init__(self, value, initial_unit, desired_unit, student_response):
@@ -50,14 +50,14 @@ class Converter:
     def convert_temperature(self):
         temp_units_quantity = ureg.Quantity
 
-        initial_value = temp_units_quantity(self.value, self.temp_units[self.initial_unit])
-        desired_value = initial_value.to(self.desired_unit).magnitude
+        initial_value = temp_units_quantity(self.value, self.temp_units[self.initial_unit][0])
+        desired_value = initial_value.to(self.temp_units[self.desired_unit][0]).magnitude
         
         return desired_value
 
     def convert_volume(self):
-        initial_value = self.value * self.vol_units[self.initial_unit]
-        desired_value = initial_value.to(self.desired_unit).magnitude
+        initial_value = self.value * self.vol_units[self.initial_unit][1]
+        desired_value = initial_value.to((self.vol_units[self.desired_unit])[1]).magnitude
         return desired_value
 
     def approx_to_tenth(self, value):
@@ -73,6 +73,12 @@ class Converter:
         #     print(f"response {approx_student_response}  -  desired {approx_desired_value} \n")
         return is_equal
     
+    def is_input_negative(self, value):
+        if value < 0:
+            return True
+        else:
+            return False
+
     def is_unit_temp_convertible(self):
         is_convertible = self.initial_unit and self.desired_unit in self.temp_units.keys()
         return is_convertible
@@ -93,9 +99,12 @@ class Converter:
             is_correct = self.compare_answer(desired_value)
             return self.response(is_correct)
 
-        elif self.is_unit_volume_convertible():
+        elif self.is_unit_volume_convertible() and not self.is_input_negative(self.value):
             desired_value = self.convert_volume()
             is_correct = self.compare_answer(desired_value)
+            if not is_correct:
+                print(f"{self.initial_unit} ==> {self.desired_unit}")
+                print(f"{self.student_response} ===> {desired_value}")
             return self.response(is_correct)
             
         else:

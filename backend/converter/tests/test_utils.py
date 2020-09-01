@@ -18,5 +18,10 @@ class UtilsTestCase(unittest.TestCase):
         
         def test_is_respose_incorrect(self):
                 self.assertEqual(Converter.response(self=None,is_correct=False), "incorrect")
-                self.assertNotEqual(Converter.response(self=None, is_correct=True), "incorrect")       
+                self.assertNotEqual(Converter.response(self=None, is_correct=True), "incorrect") 
+
+        def test_is_input_negative(self):
+                self.assertTrue(Converter.is_input_negative(self=None, value=-100))
+                self.assertFalse(Converter.is_input_negative(self=None, value=100))     
+                self.assertFalse(Converter.is_input_negative(self=None, value=0)) 
                 
