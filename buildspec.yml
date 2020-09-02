@@ -1,0 +1,35 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      docker: 19
+  pre_build:
+    commands:
+      - echo Logging in to Amazon ECR...
+      - aws --version
+      - $(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email)
+      - APP_REPOSITORY_URI=968906387115.dkr.ecr.us-east-1.amazonaws.com/unitconverterapp
+      - API_REPOSITORY_URI=968906387115.dkr.ecr.us-east-1.amazonaws.com/unitconverterapi
+      - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
+      - IMAGE_TAG=${COMMIT_HASH:=latest}
+  build:
+    commands:
+      - echo Build started on `date`
+      - echo Building the Docker image...
+      - docker build -t $APP_REPOSITORY_URI:latest ./app
+      - docker tag $APP_REPOSITORY_URI:latest $APP_REPOSITORY_URI:$IMAGE_TAG
+      - docker build -t $API_REPOSITORY_URI:latest ./api
+      - docker tag $API_REPOSITORY_URI:latest $API_REPOSITORY_URI:$IMAGE_TAG
+  post_build:
+    commands:
+      - echo Build completed on `date`
+      - echo Pushing the Docker images...
+      - docker push $APP_REPOSITORY_URI:latest
+      - docker push $APP_REPOSITORY_URI:$IMAGE_TAG
+      - docker push $API_REPOSITORY_URI:latest
+      - docker push $API_REPOSITORY_URI:$IMAGE_TAG
+      - echo Writing image definitions file...
+      - printf '[{"name":"unitconverterapi","imageUri":"%s"}, {"name":"unitconverterapp","imageUri":"%s"}]' $APIREPOSITORY_URI:$IMAGE_TAG $APPREPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
+artifacts:
+    files: imagedefinitions.json
