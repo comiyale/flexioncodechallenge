@@ -1,0 +1,89 @@
+body {
+	background-color: #222328;
+	background: url("../images/background.jpg");
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+	margin: 0;
+}
+
+.error {
+	color: red;
+}
+
+@media (min-width: 601px) {
+	#app {
+		padding: 2rem 3rem 0;
+	}
+
+	#app .contentWrapper {
+		width: 500px;
+		border-radius: 10px;
+		border: 2px solid #dc7633;
+		padding: 20px;
+		background-color: #fff;
+	}
+
+	#app .logoWrapper {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+	}
+
+	#app .logoWrapper .line {
+		width: 50px;
+		background-color: #dc7633;
+		height: 3px;
+		margin-bottom: 10px;
+	}
+
+	#app .logoWrapper p {
+		font-size: 14px;
+		line-height: 14px;
+		text-align: center;
+		color: grey;
+	}
+
+	#app .contentWrapper .circle {
+		width: 90px;
+		height: 90px;
+		background: #dc7633 0% 0% no-repeat padding-box;
+		border-radius: 50%;
+		color: #fff;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		border: 2px solid #2e5aa4;
+	}
+
+	#app .contentWrapper .circle span {
+		font-weight: bold;
+		font-size: 30px;
+		color: #fff;
+	}
+
+	#app .formBox {
+		padding: 20px;
+	}
+
+	#app .formBox textarea {
+		text-align: center;
+		font-size: 30px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+	}
+
+	#app .formBox textarea.error,
+	textarea.incorrect {
+		color: red;
+	}
+
+	#app .formBox textarea.correct {
+		color: green;
+	}
+}
