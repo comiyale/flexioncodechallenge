@@ -1,0 +1,34 @@
+{
+    "taskDefinition": "flexion-test:4",
+    "cluster": "flexion-unit-converter",
+    "loadBalancers": [
+        {
+            "targetGroupArn": "arn:aws:elasticloadbalancing:us-east-1:968906387115:targetgroup/unit-converter-1/29ee091da07c3244",
+            "containerName": "unitconverterapp",
+            "containerPort": 80
+        },
+        {
+            "targetGroupArn": "arn:aws:elasticloadbalancing:us-east-1:968906387115:targetgroup/unit-converter-2/e563ea615e5f713b",
+            "containerName": "unitconverterapi",
+            "containerPort": 8000
+        }
+    ],
+    "desiredCount": 1,
+    "launchType": "FARGATE",
+    "schedulingStrategy": "REPLICA",
+    "deploymentController": {
+        "type": "CODE_DEPLOY"
+    },
+    "networkConfiguration": {
+        "awsvpcConfiguration": {
+            "subnets": [
+                "subnet-04605660569a07f4a",
+                "subnet-04605660569a07f4a"
+            ],
+            "securityGroups": [
+                "sg-0855a70b10637e116"
+            ],
+            "assignPublicIp": "ENABLED"
+        }
+    }
+}
