@@ -1,0 +1,10 @@
+[
+    {
+      "name": "unitconverterapi",
+      "imageUri": "968906387115.dkr.ecr.us-east-1.amazonaws.com/unitconverterapi:latest"
+    },
+    {
+      "name": "unitconverterapp",
+      "imageUri": "968906387115.dkr.ecr.us-east-1.amazonaws.com/unitconverterapp:latest"
+    }
+  ]
