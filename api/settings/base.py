@@ -129,6 +129,7 @@ STATIC_URL = '/static/'
 CORS_ORIGIN_ALLOW_ALL = False
 
 CORS_ORIGIN_WHITELIST = ( 
+    'http://localhost:8080',
     'http://unit-converter-791446476.us-east-1.elb.amazonaws.com',
     )
 

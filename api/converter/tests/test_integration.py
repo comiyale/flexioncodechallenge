@@ -4,14 +4,14 @@ from convert import Converter
 
 
 class ResultTestCases(unittest.TestCase):
-    def test_result_is_Invalid(self):
-        self.assertEqual(str(Converter(value=73.12, initial_unit='gallons', desired_unit='Kelvin', student_response=19.4)), 'Invalid')
-        self.assertEqual(str(Converter(value=200, initial_unit='Celsius', desired_unit='cups', student_response=19.4)), 'Invalid')
-        self.assertEqual(str(Converter(value=180.12, initial_unit='Kelvin', desired_unit='tablespoons', student_response=19.4)), 'Invalid')
-        self.assertEqual(str(Converter(value=-750.12, initial_unit='gallons', desired_unit='Kelvin', student_response=19.4)), 'Invalid')
-        self.assertEqual(str(Converter(value=-100, initial_unit='Kelvin', desired_unit='cups', student_response=19.4)), 'Invalid') 
-        self.assertEqual(str(Converter(value=34, initial_unit='dog', desired_unit='cups', student_response=86)), 'Invalid')
-        self.assertEqual(str(Converter(value=-25, initial_unit='Kelvin', desired_unit='cats', student_response=19.4)), 'Invalid') 
+    def test_result_is_invalidd(self):
+        self.assertEqual(str(Converter(value=73.12, initial_unit='gallons', desired_unit='Kelvin', student_response=19.4)), 'invalid')
+        self.assertEqual(str(Converter(value=200, initial_unit='Celsius', desired_unit='cups', student_response=19.4)), 'invalid')
+        self.assertEqual(str(Converter(value=180.12, initial_unit='Kelvin', desired_unit='tablespoons', student_response=19.4)), 'invalid')
+        self.assertEqual(str(Converter(value=-750.12, initial_unit='gallons', desired_unit='Kelvin', student_response=19.4)), 'invalid')
+        self.assertEqual(str(Converter(value=-100, initial_unit='Kelvin', desired_unit='cups', student_response=19.4)), 'invalid') 
+        self.assertEqual(str(Converter(value=34, initial_unit='dog', desired_unit='cups', student_response=86)), 'invalid')
+        self.assertEqual(str(Converter(value=-25, initial_unit='Kelvin', desired_unit='cats', student_response=19.4)), 'invalid') 
 
 
     def test_result_is_incorrect(self):

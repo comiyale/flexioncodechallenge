@@ -1,0 +1,51 @@
+{
+    "executionRoleArn": "arn:aws:iam::968906387115:role/ecsTaskExecutionRole",
+    "containerDefinitions": [
+        {
+            "name": "unitconverterapp",
+            "image": "968906387115.dkr.ecr.us-east-1.amazonaws.com/unitconverterapp:v4",
+            "essential": true,
+            "dependsOn": [
+                {
+                  "containerName": "unitconverterapi",
+                  "condition": "HEALTHY"
+                }
+              ],
+            "portMappings": [
+                {
+                    "hostPort": 80,
+                    "protocol": "tcp",
+                    "containerPort": 80
+                }
+            ]
+        },
+        {
+            "name": "unitconverterapi",
+            "image": "968906387115.dkr.ecr.us-east-1.amazonaws.com/unitconverterapi:v3",
+            "essential": true,
+            "portMappings": [
+                {
+                    "hostPort": 8000,
+                    "protocol": "tcp",
+                    "containerPort": 8000
+                }
+            ],
+            "healthCheck": {
+                "command": [
+                  "CMD-SHELL",
+                  "echo hello"
+                ],
+                "interval": 5,
+                "timeout": 2,
+                "retries": 3
+            }    
+        }
+    ],
+    "requiresCompatibilities": [
+        "FARGATE"
+    ],
+    "networkMode": "awsvpc",
+    "cpu": "256",
+    "memory": "512",
+    "family": "flexion-test"
+}

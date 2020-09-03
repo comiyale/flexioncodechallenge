@@ -26,14 +26,14 @@ describe("Application Form test", () => {
 
 	it("Should select a unit type to convert from", () => {
 		cy.get('select[name="initial_unit"]')
-			.select("kelvin")
-			.should("have.value", "kelvin");
+			.select("Kelvin")
+			.should("have.value", "Kelvin");
 	});
 
 	it("Should select a unit type to convert to", () => {
 		cy.get('select[name="desired_unit"]')
-			.select("celsius")
-			.should("have.value", "celsius");
+			.select("Celsius")
+			.should("have.value", "Celsius");
 	});
 
 	it("Should fill in the student answer", () => {
@@ -72,7 +72,7 @@ describe("Testing the application API request", function() {
 		cy.route("POST", "/api/convert/", {
 			value: "84.2",
 			student_response: "543.94",
-			initial_unit: "kelvin",
+			initial_unit: "Kelvin",
 			desired_unit: "liters",
 		});
 	});
