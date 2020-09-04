@@ -21,10 +21,6 @@ phases:
       - docker tag $APP_REPOSITORY_URI:latest $APP_REPOSITORY_URI:$IMAGE_TAG
       - docker build -t $API_REPOSITORY_URI:latest --build-arg SECRET_KEY=$DJANGOSECRETKEY --build-arg DJANGO_SETTINGS_MODULE=$DJANGOSETTINGSMODULE ./api
       - docker tag $API_REPOSITORY_URI:latest $API_REPOSITORY_URI:$IMAGE_TAG
-      - echo Running API Tests
-      - docker run -d --rm --name converter-api-test $API_REPOSITORY_URI:latest
-      - docker exec -it converter-api-test pytest
-      - docker stop converter-api-test
 
   post_build:
     commands:
