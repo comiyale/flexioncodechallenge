@@ -22,7 +22,7 @@
 							class="form-control"
 							name="question"
 							type="text"
-							placeholder="Please enter question..."
+							placeholder="Input Numerical Value"
 							@keyup="inputValidator('question')"
 							id="question"
 							required
@@ -80,7 +80,7 @@
 							class="form-control"
 							name="answer"
 							type="text"
-							placeholder="Please student answer..."
+							placeholder="Student Response"
 							@keyup="inputValidator('answer')"
 							id="answer"
 							required

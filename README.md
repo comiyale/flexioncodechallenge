@@ -32,7 +32,7 @@ http://unit-converter-791446476.us-east-1.elb.amazonaws.com/
 ### To run the backend
 - On the root folder of the project cd into api folder.
 - Run `pip install requirements.txt`
-- Run `export DJANGO_SECRET_KEY="<Your Secret Value>"
+- Run `export DJANGO_SECRET_KEY="Your Secret KEY"
 - Run `python manage.py runserver`
 ### To run the frontend
 - On the root folder of the project cd into app folder.
@@ -44,4 +44,4 @@ http://unit-converter-791446476.us-east-1.elb.amazonaws.com/
 - Include a test stage to the CI/CD process.
 - Build a system that makes it easy to add, update and delete new units and unit types
 - Scan the image for security vulnerabilities before pushing them to Elastic Container Registry
-- Include auto scaling features for when there is high traffick, 
+- Write a detailed documentation on how the app should work, what it can do and it's limitation

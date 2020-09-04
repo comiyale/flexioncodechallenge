@@ -1,9 +1,9 @@
 {
-    "executionRoleArn": "arn:aws:iam::968906387115:role/ecsTaskExecutionRole",
+    "executionRoleArn": "",
     "containerDefinitions": [
         {
             "name": "unitconverterapp",
-            "image": "968906387115.dkr.ecr.us-east-1.amazonaws.com/unitconverterapp:v4",
+            "image": "",
             "essential": true,
             "dependsOn": [
                 {
@@ -21,7 +21,7 @@
         },
         {
             "name": "unitconverterapi",
-            "image": "968906387115.dkr.ecr.us-east-1.amazonaws.com/unitconverterapi:v3",
+            "image": "",
             "essential": true,
             "portMappings": [
                 {
