@@ -40,9 +40,6 @@ class Converter:
         self.initial_unit = initial_unit
         self.desired_unit = desired_unit
         self.student_response = student_response
-
-    def __str__(self):
-        return self.convert()
     
     def __repr__(self):
         return self.convert()
